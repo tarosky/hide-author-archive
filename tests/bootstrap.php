@@ -19,7 +19,14 @@ if ( ! file_exists( $_tests_dir . '/includes/functions.php' ) ) {
 // Give access to tests_add_filter() function.
 require_once $_tests_dir . '/includes/functions.php';
 
-require_once dirname( __DIR__ ) . '/hide-author-login.php';
+/**
+ * Manually load the plugin being tested.
+ */
+function _manually_load_plugin() {
+	require dirname( dirname( __FILE__ ) ) . '/hide-author-archive.php';
+}
+tests_add_filter( 'muplugins_loaded', '_manually_load_plugin' );
+
 
 // Start up the WP testing environment.
 require $_tests_dir . '/includes/bootstrap.php';
