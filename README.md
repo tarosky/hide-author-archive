@@ -1,7 +1,7 @@
 # Hide Author Archive
 
-Contributors: Takahashi_Fumiki,hametuha  
-Tags: delete, account  
+Contributors: kuno1, Takahashi_Fumiki  
+Tags: permalink, author, archive, url  
 Requires at least: 5.0  
 Requires PHP: 5.6  
 Tested up to: 5.5  
@@ -12,6 +12,10 @@ Hide author archive of WordPress.
 ## Description
 
 This plugin will hide author's archive.
+If your don't need author parameter, this plugin may enhance your site's security from bot inspection.
+
+1. No more `?author=1` redirection to `/author/admin`
+2. Ignore query var like `author=1` or `author_name=admin`
 
 ## Installation
 
@@ -29,6 +33,10 @@ We host plugin on [github](https://github.com/kuno1/hide-author-archive) and any
 
 ## Changelog
 
-### 1.0.0
+### 0.8.1
+
+* Fix query var bug.
+
+### 0.8.0
 
 * First release

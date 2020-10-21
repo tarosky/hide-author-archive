@@ -1,6 +1,6 @@
 {
     "name": "kunoichi/hide-author-archive",
-    "description": "Communicate with Google Analytics API.",
+    "description": "Hide author archive to protect author login.",
     "type": "library",
     "license": "GPL-3.0-or-later",
     "authors": [
