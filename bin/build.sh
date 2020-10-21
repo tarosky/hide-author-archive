@@ -28,6 +28,6 @@ rm -rf ./.gitignore
 rm -rf ./.wp-env.json
 rm -rf ./composer.lock
 rm -rf ./package-lock.json
-rm -rf ./phpunit.xml.dit
+rm -rf ./phpunit.xml.dist
 rm -rf ./README.md
 rm -rf ./wp-assets
