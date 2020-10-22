@@ -30,4 +30,4 @@ rm -rf ./composer.lock
 rm -rf ./package-lock.json
 rm -rf ./phpunit.xml.dist
 rm -rf ./README.md
-rm -rf ./wp-assets
+rm -rf ./.wordpress-org
