@@ -35,10 +35,6 @@ We host plugin on [github](https://github.com/kuno1/hide-author-archive) and any
 
 ## Changelog
 
-### 0.8.1
-
-* Fix query var bug.
-
-### 0.8.0
+### 1.0.0
 
 * First release
