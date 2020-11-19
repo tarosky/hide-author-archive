@@ -8,7 +8,8 @@
  * Author URI:  https://kunoichiwp.com
  * License:     GPLv3 or later
  * License URI: https://www.gnu.org/licenses/old-licenses/gpl-3.0.html
- * Text Domain: hide-author-archives
+ * Text Domain: hide-author-archive
+ * Domain Path: languages
  *
  * @package hide-author-archive
  */
@@ -23,43 +24,16 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 	require __DIR__ . '/vendor/autoload.php';
 }
 
-/**
- * Remove rewrite rules.
- */
-add_filter( 'author_rewrite_rules', '__return_empty_array' );
+// Load i18n.
+function hide_author_archive_i18n() {
+	load_plugin_textdomain( 'hide-author-archive', false, basename( __DIR__ ) . '/languages' );
+}
+add_action( 'plugins_loaded', 'hide_author_archive_i18n' );
 
-/**
- * Stop canonical redirect
- *
- * @param string $redirect_url
- * @param string $requested_url
- *
- * @return string
- */
-add_filter( 'redirect_canonical', function ( $redirect_url, $requested_url ) {
-	if ( is_author() && ! empty( $_GET[ 'author' ] ) && preg_match( '|^[0-9]+$|', $_GET[ 'author' ] ) ) {
-		$redirect_url = false;
-	}
-	
-	return $redirect_url;
-}, 10, 2 );
-
-/**
- * Remove author query vars.
- */
-add_filter( 'query_vars', function ( $vars ) {
-	if ( is_admin() ) {
-		return $vars;
-	}
-	$new_vars = [];
-	foreach ( $vars as $var ) {
-		if ( ! in_array( $var, [ 'author_name', 'author' ] ) ) {
-			$new_vars[] = $var;
-		}
-	}
-	
-	return $new_vars;
-} );
+// Load includes.
+require __DIR__ . '/includes/functions-rewrite.php';
+require __DIR__ . '/includes/functions-rest.php';
+require __DIR__ . '/includes/functions-admin.php';
 
 /**
  * Flush rewrite rules.
@@ -68,6 +42,5 @@ add_filter( 'query_vars', function ( $vars ) {
 function hide_author_archive_activation_hook() {
 	flush_rewrite_rules( false );
 }
-
 register_activation_hook( __FILE__, 'hide_author_archive_activation_hook' );
 register_deactivation_hook( __FILE__, 'hide_author_archive_activation_hook' );
