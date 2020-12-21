@@ -13,10 +13,12 @@
     "scripts": {
         "test": "phpunit",
         "cs":[
+            "phpcs --config-set installed_paths $(pwd)/vendor/wp-coding-standards/wpcs",
             "phpcs --standard=phpcs.ruleset.xml includes",
             "phpcs --standard=phpcs.ruleset.xml hide-author-archive.php"
         ],
         "cs:csv":[
+            "phpcs --config-set installed_paths $(pwd)/vendor/wp-coding-standards/wpcs",
             "phpcs --standard=phpcs.ruleset.xml --report=csv includes | column -s , -t",
             "phpcs --standard=phpcs.ruleset.xml --report=csv hide-author-archive.php | column -s , -t"
         ]
