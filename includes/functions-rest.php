@@ -8,8 +8,8 @@
 /**
  * Hide author archive in REST API
  *
- * @param array $args
- * @param WP_REST_Request $request
+ * @param array           $args    Arguments for REST request.
+ * @param WP_REST_Request $request Request object.
  * @return array
  */
 function hide_author_archive_rest_query_filter( $args, $request ) {

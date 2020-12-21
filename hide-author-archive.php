@@ -24,7 +24,9 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 	require __DIR__ . '/vendor/autoload.php';
 }
 
-// Load i18n.
+/**
+ * Load i18n.
+ */
 function hide_author_archive_i18n() {
 	load_plugin_textdomain( 'hide-author-archive', false, basename( __DIR__ ) . '/languages' );
 }
@@ -37,7 +39,6 @@ require __DIR__ . '/includes/functions-admin.php';
 
 /**
  * Flush rewrite rules.
- *
  */
 function hide_author_archive_activation_hook() {
 	flush_rewrite_rules( false );

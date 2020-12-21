@@ -49,6 +49,10 @@ jobs:
 
       - name: Run test suite
         run: composer test
+
+      - name: Run PHP CS
+        run: composer cs
+
   release:
     name: Release build
     needs: test

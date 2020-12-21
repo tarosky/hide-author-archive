@@ -36,9 +36,10 @@ We host plugin on [github](https://github.com/kuno1/hide-author-archive) and any
 
 ## Changelog
 
-### 1.1.0
+### 1.1.1
 
 * Support REST API.
+* Fix coding standards.
 
 ### 1.0.0
 

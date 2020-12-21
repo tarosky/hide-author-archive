@@ -14,8 +14,8 @@ add_filter( 'author_rewrite_rules', '__return_empty_array' );
 /**
  * Stop canonical redirect
  *
- * @param string $redirect_url
- * @param string $requested_url
+ * @param string $redirect_url  URL to which users will be redirect.
+ * @param string $requested_url Original URL.
  *
  * @return string
  */
@@ -35,7 +35,7 @@ add_filter( 'redirect_canonical', 'hide_author_archive_canonical', 10, 2 );
 /**
  * Remove author query vars.
  *
- * @param string[] @vars
+ * @param string[] $vars Query vars.
  * @return string[]
  */
 function hide_author_archive_query_var( $vars ) {
@@ -44,7 +44,7 @@ function hide_author_archive_query_var( $vars ) {
 	}
 	$new_vars = [];
 	foreach ( $vars as $var ) {
-		if ( ! in_array( $var, [ 'author_name', 'author' ] ) ) {
+		if ( ! in_array( $var, [ 'author_name', 'author' ], true ) ) {
 			$new_vars[] = $var;
 		}
 	}
