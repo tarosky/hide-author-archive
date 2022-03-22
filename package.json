@@ -3,6 +3,8 @@
   "main": "index.js",
   "scripts": {
     "start": "wp-env start",
+    "update": "wp-env start --update",
+    "stop": "wp-env stop",
     "test": "echo \"Error: no test specified\" && exit 1",
     "env": "wp-env",
     "cli": "wp-env run cli wp"
@@ -21,6 +23,6 @@
   },
   "homepage": "https://github.com/kuno1/ga-communicator#readme",
   "devDependencies": {
-    "@wordpress/env": "^1.4.0"
+    "@wordpress/env": "^4.3.1"
   }
 }
