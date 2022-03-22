@@ -18,7 +18,19 @@ If your don't need author parameter, this plugin may enhance your site's securit
 
 1. No more `?author=1` redirection to `/author/admin`
 2. Ignore query var like `author=1` or `author_name=admin`
-3. Hide user list in REST API from user without permission `list_users`. This capability is filterable.
+3. Hide user list in REST API from user without permission `list_users` or `edit_others_posts`. This capability is filterable.
+
+<pre>
+/**
+ * Filter capabilities to see author list.
+ *
+ * @param string[] $caps List of capabilities.
+ */
+add_filter( 'hide_author_archive_rest_query_capability', function( $caps ) {
+	$caps[] = 'read';
+	return $caps;
+} );
+</pre>
 
 ## Installation
 
@@ -35,6 +47,11 @@ Altenatively, you can install it manually like below:
 We host plugin on [github](https://github.com/kuno1/hide-author-archive) and any issues and pull requests are welcomed!
 
 ## Changelog
+
+### 1.1.5
+
+* Hide single REST API for single user get `wp/v2/users/1`.
+* Editor can see REST API users get to change author of posts.
 
 ### 1.1.1
 
