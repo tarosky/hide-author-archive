@@ -15,8 +15,8 @@ jobs:
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
-        operating-system: [ ubuntu-16.04 ]  # OS. ubuntu-18.04 is also available.
-        php: [ '5.6', '7.3' ] # PHP versions to check.
+        operating-system: [ ubuntu-18.04 ]  # OS. ubuntu-18.04 is also available.
+        php: [ '5.6', '7.4' ] # PHP versions to check.
         wp: [ 'latest', '5.0' ]      # WordPress version to check.
     services:
       mysql:
@@ -57,7 +57,7 @@ jobs:
     name: Release build
     needs: test
     if: contains(github.ref, 'tags/')
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-18.04
     strategy:
       matrix:
         zip: [ 'hide-author-archive' ] # Zip name.
