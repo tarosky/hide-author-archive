@@ -35,7 +35,7 @@ add_filter( 'rest_user_query', 'hide_author_archive_rest_query_filter', 10, 2 );
  * @param WP_REST_Request                                  $request  Request object.
  * @return mixed
  */
-function hide_author_archive_get_user( $response, &$handler, $request ) {
+function hide_author_archive_get_user( $response, $handler, $request ) {
 	// Is GET request?
 	if ( WP_REST_Server::READABLE !== $request->get_method() ) {
 		return $response;
@@ -57,7 +57,9 @@ function hide_author_archive_get_user( $response, &$handler, $request ) {
 	return new WP_Error(
 		'rest_user_cannot_view',
 		__( 'Sorry, you are not allowed to list users.' ),
-		array( 'status' => rest_authorization_required_code() )
+		[
+			'status' => rest_authorization_required_code(),
+		]
 	);
 }
 add_filter( 'rest_request_before_callbacks', 'hide_author_archive_get_user', 10, 3 );
