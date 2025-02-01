@@ -4,8 +4,8 @@
  * Plugin URI:  https://github.com/kuno1/hide-author-archive
  * Description: Hide author archive pages.
  * Version:     %nightly%
- * Author:      Kunoichi INC.
- * Author URI:  https://kunoichiwp.com
+ * Author:      Tarosky
+ * Author URI:  https://tarosky.co.jp
  * License:     GPLv3 or later
  * License URI: https://www.gnu.org/licenses/old-licenses/gpl-3.0.html
  * Text Domain: hide-author-archive
