@@ -27,6 +27,7 @@ README.md
 wp-cli.local.yml
 tests
 node_modules
+hide-author-archive.php.bak
 *.sql
 *.tar.gz
 *.zip

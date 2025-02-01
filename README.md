@@ -1,10 +1,10 @@
 # Hide Author Archive
 
-Contributors: kuno1, Takahashi_Fumiki  
+Contributors: kuno1, Takahashi_Fumiki, tarosky  
 Tags: permalink, author, archive, url  
-Requires at least: 5.0  
-Requires PHP: 5.6  
-Tested up to: 5.9  
+Requires at least: 5.9  
+Requires PHP: 7.4  
+Tested up to: 6.7  
 Stable tag: %nightly%  
 License: GPLv3 or later  
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -47,6 +47,10 @@ Altenatively, you can install it manually like below:
 We host plugin on [github](https://github.com/kuno1/hide-author-archive) and any issues and pull requests are welcomed!
 
 ## Changelog
+
+### 1.2.0
+
+* Add override function for Yoast.
 
 ### 1.1.5
 

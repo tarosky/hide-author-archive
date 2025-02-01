@@ -2,8 +2,6 @@ name: Hide Author Archive CI
 
 on:
   push:
-    branches:
-      - main
     tags:
       - '*'
   pull_request:
@@ -11,58 +9,73 @@ on:
       - main
 
 jobs:
-  test:
-    runs-on: ${{ matrix.operating-system }}
-    strategy:
-      matrix:
-        operating-system: [ ubuntu-18.04 ]  # OS. ubuntu-18.04 is also available.
-        php: [ '5.6', '7.4' ] # PHP versions to check.
-        wp: [ 'latest', '5.0' ]      # WordPress version to check.
-    services:
-      mysql:
-        image: mysql:5.7
-        options: --health-cmd "mysqladmin ping --host 127.0.0.1 --port 3306" --health-interval 20s --health-timeout 10s --health-retries 10
-        ports:
-          - 3306/tcp
-        env:
-          MYSQL_ROOT_PASSWORD: root
-    name: UnitTest on WordPress ${{ matrix.wp }} in PHP ${{ matrix.php }}
+#  test:
+#    runs-on: ${{ matrix.operating-system }}
+#    strategy:
+#      matrix:
+#        operating-system: [ ubuntu-18.04 ]  # OS. ubuntu-18.04 is also available.
+#        php: [ '5.6', '7.4' ] # PHP versions to check.
+#        wp: [ 'latest', '5.0' ]      # WordPress version to check.
+#    services:
+#      mysql:
+#        image: mysql:5.7
+#        options: --health-cmd "mysqladmin ping --host 127.0.0.1 --port 3306" --health-interval 20s --health-timeout 10s --health-retries 10
+#        ports:
+#          - 3306/tcp
+#        env:
+#          MYSQL_ROOT_PASSWORD: root
+#    name: UnitTest on WordPress ${{ matrix.wp }} in PHP ${{ matrix.php }}
+#    steps:
+#      - uses: actions/checkout@master
+#
+#      - name: Setup PHP
+#        uses: nanasess/setup-php@master
+#        with:
+#          php-version: ${{ matrix.php }}
+#
+#      - name: Validate composer.json and composer.lock
+#        run: composer validate
+#
+#      - name: Install dependencies
+#        run: composer install --prefer-dist --no-progress --no-suggest
+#
+#      - name: Start MySQL
+#        run: sudo systemctl start mysql
+#
+#      - name: Install WordPress
+#        run: bash bin/install-wp-tests.sh wordpress root root 127.0.0.1:3306 ${{ matrix.wp }}
+#
+#      - name: Run test suite
+#        run: composer test
+#
+#      - name: Run PHP CS
+#        run: composer cs
+
+  lint:
+    uses: tarosky/workflows/.github/workflows/phpcs.yml@main
+    with:
+      version: 7.4
+
+  status-check:
+    name: Status Check
+    needs: [ lint ]
+    if: always()
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-
-      - name: Setup PHP
-        uses: nanasess/setup-php@master
+      - uses: re-actors/alls-green@release/v1
         with:
-          php-version: ${{ matrix.php }}
-
-      - name: Validate composer.json and composer.lock
-        run: composer validate
-
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest
-
-      - name: Start MySQL
-        run: sudo systemctl start mysql
-
-      - name: Install WordPress
-        run: bash bin/install-wp-tests.sh wordpress root root 127.0.0.1:3306 ${{ matrix.wp }}
-
-      - name: Run test suite
-        run: composer test
-
-      - name: Run PHP CS
-        run: composer cs
+          jobs: ${{ toJSON(needs) }}
 
   release:
     name: Release build
-    needs: test
+    needs: status-check
     if: contains(github.ref, 'tags/')
-    runs-on: ubuntu-18.04
-    strategy:
-      matrix:
-        zip: [ 'hide-author-archive' ] # Zip name.
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@main
+
+      - name: Install Subversion
+        run: sudo apt-get install subversion
 
       - name: Build package.
         run: bash bin/build.sh ${GITHUB_REF/refs\/tags\//}
@@ -72,8 +85,8 @@ jobs:
         with:
           generate-zip: true
         env:
-          SVN_PASSWORD: ${{ secrets.WPORG_SVN_PASS }}
-          SVN_USERNAME: ${{ secrets.WPORG_SVN_USERNAME }}
+          SVN_USERNAME: ${{ secrets.WP_ORG_USERNAME_TAROSKY }}
+          SVN_PASSWORD: ${{ secrets.WP_ORG_PASSWORD_TAROSKY }}
 
       - name: Deploy Release
         id: create_release

@@ -4,8 +4,8 @@
  * Plugin URI:  https://github.com/kuno1/hide-author-archive
  * Description: Hide author archive pages.
  * Version:     %nightly%
- * Author:      Kunoichi INC.
- * Author URI:  https://kunoichiwp.com
+ * Author:      Tarosky
+ * Author URI:  https://tarosky.co.jp
  * License:     GPLv3 or later
  * License URI: https://www.gnu.org/licenses/old-licenses/gpl-3.0.html
  * Text Domain: hide-author-archive
@@ -36,6 +36,7 @@ add_action( 'plugins_loaded', 'hide_author_archive_i18n' );
 require __DIR__ . '/includes/functions-rewrite.php';
 require __DIR__ . '/includes/functions-rest.php';
 require __DIR__ . '/includes/functions-admin.php';
+require __DIR__ . '/includes/override-yoast.php';
 
 /**
  * Flush rewrite rules.
