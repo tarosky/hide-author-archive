@@ -54,7 +54,7 @@ jobs:
   lint:
     uses: tarosky/workflows/.github/workflows/phpcs.yml@main
     with:
-      version:7.4
+      version: 7.4
 
   status-check:
     name: Status Check
