@@ -13,11 +13,11 @@ function hide_author_archive_fields() {
 		return;
 	}
 	// Register settings section.
-	add_settings_section( 'hide_author_archive', __( 'Hide Author Archive', 'hide-author-archive' ), function() {
+	add_settings_section( 'hide_author_archive', __( 'Hide Author Archive', 'hide-author-archive' ), function () {
 		printf( '<p class="description">%s</p>', esc_html__( 'Author archive pages is hidden by default. You can set other page in which user\'s ID may revealed.', 'hide-author-archive' ) );
 	}, 'reading' );
 	// Register setting fields.
-	add_settings_field( 'hide_author_archive_int_rest', __( 'REST API', 'hide-author-archive' ), function() {
+	add_settings_field( 'hide_author_archive_int_rest', __( 'REST API', 'hide-author-archive' ), function () {
 		printf(
 			'<label><input type="checkbox" value="1" name="%1$s" id="%1$s" %2$s /> %3$s </label>',
 			'hide_author_archive_int_rest',
