@@ -64,7 +64,7 @@ But feel free to let us know and request new features.
 
 ### How To Contribute
 
-We host plugin on [github](https://github.com/kuno1/hide-author-archive) and any issues and pull requests are welcomed!
+We host plugin on [github](https://github.com/tarosky/hide-author-archive) and any issues and pull requests are welcomed!
 
 ## Changelog
 

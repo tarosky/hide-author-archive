@@ -1,5 +1,5 @@
 {
-    "name": "kunoichi/hide-author-archive",
+    "name": "tarosky/hide-author-archive",
     "description": "Hide author archive to protect author login.",
     "type": "library",
     "license": "GPL-3.0-or-later",
@@ -7,6 +7,10 @@
         {
             "name": "Kunoichi",
             "email": "sushi@kunoichiwp.com"
+        },
+        {
+            "name": "Tarosky",
+            "email": "hi@tarosky.co.jp"
         }
     ],
     "minimum-stability": "stable",
