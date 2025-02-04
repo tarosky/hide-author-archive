@@ -68,6 +68,10 @@ We host plugin on [github](https://github.com/kuno1/hide-author-archive) and any
 
 ## Changelog
 
+### 1.2.1
+
+* Add some more filters for Yoast and oEmbed(Core).
+
 ### 1.2.0
 
 * Add override function for Yoast.
