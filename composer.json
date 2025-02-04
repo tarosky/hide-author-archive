@@ -1,5 +1,5 @@
 {
-    "name": "kunoichi/hide-author-archive",
+    "name": "tarosky/hide-author-archive",
     "description": "Hide author archive to protect author login.",
     "type": "library",
     "license": "GPL-3.0-or-later",
@@ -7,20 +7,34 @@
         {
             "name": "Kunoichi",
             "email": "sushi@kunoichiwp.com"
+        },
+        {
+            "name": "Tarosky",
+            "email": "hi@tarosky.co.jp"
         }
     ],
     "minimum-stability": "stable",
     "scripts": {
         "test": "phpunit",
-        "lint":[
+        "lint": [
             "phpcs --standard=phpcs.ruleset.xml includes",
             "phpcs --standard=phpcs.ruleset.xml hide-author-archive.php"
         ],
-        "fix":[
+        "fix": [
             "phpcbf --standard=phpcs.ruleset.xml includes",
             "phpcbf --standard=phpcs.ruleset.xml hide-author-archive.php"
         ]
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org",
+            "only": [
+                "wpackagist-plugin/*",
+                "wpackagist-theme/*"
+            ]
+        }
+    ],
     "require": {
         "php": ">=7.4"
     },
@@ -28,11 +42,20 @@
         "phpunit/phpunit": ">=6",
         "squizlabs/php_codesniffer": "^3.0.0",
         "wp-coding-standards/wpcs": "^3.0.0",
-        "yoast/phpunit-polyfills": "^2.0"
+        "yoast/phpunit-polyfills": "^2.0",
+        "wpackagist-plugin/wordpress-seo": "^24.3"
     },
     "config": {
         "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "composer/installers": true
+        }
+    },
+    "extra": {
+        "installer-paths": {
+            "vendor/plugins/{$name}/": [
+                "type:wordpress-plugin"
+            ]
         }
     }
 }

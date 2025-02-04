@@ -9,7 +9,7 @@ Stable tag: %nightly%
 License: GPLv3 or later  
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Hide author archive of WordPress.
+Hide author archive URL of WordPress.
 
 ## Description
 
@@ -32,6 +32,21 @@ add_filter( 'hide_author_archive_rest_query_capability', function( $caps ) {
 } );
 </pre>
 
+Besides that, this plugin tries to remove author information from meta tags and JSON-LD as possible as it can.
+
+- Override author section in oEmbed.
+
+Some organization needs to hide author information of each article.
+
+### Supported Plugins
+
+#### Yoast
+
+1. Remove <code>meta=author</code>
+2. Override author section in Article scheme in JSON-LD
+3. Hide author section in Slack sharing.
+4. Hide <code>article:author</code> in OGP.
+
 ## Installation
 
 Search "hide author archives" in admin screen.
@@ -42,11 +57,20 @@ Altenatively, you can install it manually like below:
 
 ## Frequently Asked Questions
 
+### There is still author name exposed!
+
+Our fundamental goal is covering Core features.
+But feel free to let us know and request new features.
+
 ### How To Contribute
 
-We host plugin on [github](https://github.com/kuno1/hide-author-archive) and any issues and pull requests are welcomed!
+We host plugin on [github](https://github.com/tarosky/hide-author-archive) and any issues and pull requests are welcomed!
 
 ## Changelog
+
+### 1.2.1
+
+* Add some more filters for Yoast and oEmbed(Core).
 
 ### 1.2.0
 
