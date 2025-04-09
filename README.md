@@ -1,6 +1,6 @@
 # Hide Author Archive
 
-Contributors: kuno1, Takahashi_Fumiki, tarosky  
+Contributors: kuno1, Takahashi_Fumiki, tarosky, nevnum  
 Tags: permalink, author, archive, url  
 Requires at least: 5.9  
 Requires PHP: 7.4  
