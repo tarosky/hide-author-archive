@@ -1,0 +1,35 @@
+name: WordPress Tested Version
+
+on:
+  schedule:
+    - cron: "0 1 13 * *" # Every month on the 13th at 2am UTC
+
+jobs:
+  is-outdated:
+    name: Check if WP version is outdated
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@main
+
+      - name: Check wp version
+        uses: tarosky/farmhand-wp-aciton@v1
+        id: wp_version
+
+      - name: Update Issue if needed
+        if: steps.wp_version.outputs.should_update
+        uses: actions-ecosystem/action-create-issue@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          title: "WordPress ${{ steps.wp_version.outputs.version }} に対応"
+          body: |
+            ## TODO
+
+            - [ ] 最新のWordPressバージョンで動作するか確認する
+            - [ ] README.md の "Tested up to" を更新する
+
+          labels: |
+            update
+            wp-org
+          assignees: |
+            - @tarosky/maintainers
