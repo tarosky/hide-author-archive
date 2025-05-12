@@ -3,53 +3,22 @@ name: Hide Author Archive CI
 on:
   push:
     tags:
-      - '*'
+      - '*.*.*'
   pull_request:
     branches:
       - main
 
 jobs:
-#  test:
-#    runs-on: ${{ matrix.operating-system }}
-#    strategy:
-#      matrix:
-#        operating-system: [ ubuntu-18.04 ]  # OS. ubuntu-18.04 is also available.
-#        php: [ '5.6', '7.4' ] # PHP versions to check.
-#        wp: [ 'latest', '5.0' ]      # WordPress version to check.
-#    services:
-#      mysql:
-#        image: mysql:5.7
-#        options: --health-cmd "mysqladmin ping --host 127.0.0.1 --port 3306" --health-interval 20s --health-timeout 10s --health-retries 10
-#        ports:
-#          - 3306/tcp
-#        env:
-#          MYSQL_ROOT_PASSWORD: root
-#    name: UnitTest on WordPress ${{ matrix.wp }} in PHP ${{ matrix.php }}
-#    steps:
-#      - uses: actions/checkout@master
-#
-#      - name: Setup PHP
-#        uses: nanasess/setup-php@master
-#        with:
-#          php-version: ${{ matrix.php }}
-#
-#      - name: Validate composer.json and composer.lock
-#        run: composer validate
-#
-#      - name: Install dependencies
-#        run: composer install --prefer-dist --no-progress --no-suggest
-#
-#      - name: Start MySQL
-#        run: sudo systemctl start mysql
-#
-#      - name: Install WordPress
-#        run: bash bin/install-wp-tests.sh wordpress root root 127.0.0.1:3306 ${{ matrix.wp }}
-#
-#      - name: Run test suite
-#        run: composer test
-#
-#      - name: Run PHP CS
-#        run: composer cs
+  test:
+    strategy:
+      matrix:
+        php: [ '7.4', '8.2' ] # PHP versions to check.
+        wp: [ 'latest', '5.9' ]      # WordPress version to check.
+    name: "PHP Unitest for WordPress ${{ matrix.wp }} in PHP ${{ matrix.php }}"
+    uses: tarosky/workflows/.github/workflows/wp-unit-test.yml@main
+    with:
+        php_version: ${{ matrix.php }}
+        wp_version: ${{ matrix.wp }}
 
   lint:
     uses: tarosky/workflows/.github/workflows/phpcs.yml@main
@@ -58,7 +27,7 @@ jobs:
 
   status-check:
     name: Status Check
-    needs: [ lint ]
+    needs: [ lint, test ]
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -71,6 +40,9 @@ jobs:
     needs: status-check
     if: contains(github.ref, 'tags/')
     runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://ja.wordpress.org/plugins/hide-author-archive/
     steps:
       - uses: actions/checkout@main
 
