@@ -13,11 +13,11 @@ jobs:
         uses: actions/checkout@main
 
       - name: Check wp version
-        uses: tarosky/farmhand-wp-aciton@v1
+        uses: tarosky/farmhand-wp-action@v1
         id: wp_version
 
       - name: Update Issue if needed
-        if: steps.wp_version.outputs.should_update
+        if: ${{ 'true' == steps.wp_version.outputs.should_update }}
         uses: actions-ecosystem/action-create-issue@v1
         with:
           github_token: ${{ secrets.github_token }}
@@ -25,11 +25,11 @@ jobs:
           body: |
             ## TODO
 
-            - [ ] 最新のWordPressバージョンで動作するか確認する
-            - [ ] README.md の "Tested up to" を更新する
+            - [ ] プラグインがWordPress ${{ steps.wp_version.outputs.version }} に対応しているかチェックする
+            - [ ] README.MD の "Tested up to" を更新する
 
           labels: |
             update
             wp-org
           assignees: |
-            - @tarosky/maintainers
+            - fumikito
