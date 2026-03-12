@@ -23,6 +23,8 @@ phpunit.xml.dist
 multisite.xml
 multisite.xml.dist
 phpcs.ruleset.xml
+phpstan.neon
+phpstan-baseline.neon
 README.md
 wp-cli.local.yml
 tests
