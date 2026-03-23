@@ -16,14 +16,8 @@
     "minimum-stability": "stable",
     "scripts": {
         "test": "phpunit",
-        "lint": [
-            "phpcs --standard=phpcs.ruleset.xml includes",
-            "phpcs --standard=phpcs.ruleset.xml hide-author-archive.php"
-        ],
-        "fix": [
-            "phpcbf --standard=phpcs.ruleset.xml includes",
-            "phpcbf --standard=phpcs.ruleset.xml hide-author-archive.php"
-        ],
+        "lint": "phpcs --standard=phpcs.ruleset.xml",
+        "fix": "phpcbf --standard=phpcs.ruleset.xml",
         "phpstan": "phpstan analyse --memory-limit=1G"
     },
     "repositories": [
