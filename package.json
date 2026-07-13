@@ -24,9 +24,9 @@
   },
   "homepage": "https://github.com/tarosky/hide-author-archive#readme",
   "devDependencies": {
-    "@wordpress/env": "^9.0.0",
+    "@wordpress/env": "^11.10.0",
     "husky": "^9.1.7",
-    "lint-staged": "^16.2.7"
+    "lint-staged": "^17.0.8"
   },
   "lint-staged": {
     "*.php": "composer lint"
