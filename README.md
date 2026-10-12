@@ -18,13 +18,17 @@ If your don't need author parameter, this plugin may enhance your site's securit
 
 1. No more `?author=1` redirection to `/author/admin`
 2. Ignore query var like `author=1` or `author_name=admin`
-3. Hide user list in REST API from user without permission `list_users` or `edit_others_posts`. This capability is filterable.
+3. Hide user list in REST API from user without permission `list_users` or `edit_others_posts`. Single user request like `wp/v2/users/1` is also hidden with the same capabilities, except for the user themselves and users who can edit the user. This capability is filterable.
 
 <pre>
 /**
- * Filter capabilities to see author list.
+ * Filter capabilities to see author list and single author.
  *
- * @param string[] $caps List of capabilities.
+ * For single user request, $args is an empty array.
+ *
+ * @param string[]             $caps    List of capabilities.
+ * @param array                $args    Arguments for user query.
+ * @param WP_REST_Request|null $request Request object.
  */
 add_filter( 'hide_author_archive_rest_query_capability', function( $caps ) {
 	$caps[] = 'read';
