@@ -37,6 +37,7 @@ add_filter( 'hide_author_archive_rest_query_capability', function( $caps ) {
 Besides that, this plugin tries to remove author information from meta tags and JSON-LD as possible as it can.
 
 - Override author section in oEmbed.
+- Replace author name in feeds (`<dc:creator>` in RSS, `<author>` in Atom) with the site name. Author's URL is also removed from Atom feed. Display name is the same as login name by default, so feeds may reveal it.
 
 Some organization needs to hide author information of each article.
 
