@@ -9,7 +9,6 @@
  * License:     GPLv3 or later
  * License URI: https://www.gnu.org/licenses/old-licenses/gpl-3.0.html
  * Text Domain: hide-author-archive
- * Domain Path: languages
  *
  * @package hide-author-archive
  */
@@ -23,14 +22,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 	require __DIR__ . '/vendor/autoload.php';
 }
-
-/**
- * Load i18n.
- */
-function hide_author_archive_i18n() {
-	load_plugin_textdomain( 'hide-author-archive', false, basename( __DIR__ ) . '/languages' );
-}
-add_action( 'plugins_loaded', 'hide_author_archive_i18n' );
 
 // Load includes.
 require __DIR__ . '/includes/functions-author.php';

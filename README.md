@@ -2,9 +2,9 @@
 
 Contributors: kuno1, Takahashi_Fumiki, tarosky, nevnum  
 Tags: permalink, author, archive, url  
-Requires at least: 5.9  
+Requires at least: 6.6  
 Requires PHP: 7.4  
-Tested up to: 6.7  
+Tested up to: 7.1  
 Stable tag: %nightly%  
 License: GPLv3 or later  
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -83,6 +83,16 @@ But feel free to let us know and request new features.
 We host plugin on [github](https://github.com/tarosky/hide-author-archive) and any issues and pull requests are welcomed!
 
 ## Changelog
+
+### 1.3.0
+
+* **Security**: Remove users sitemap (`/wp-sitemap-users-1.xml`) from core XML sitemaps and exclude all authors from Yoast author sitemap. Author archive URLs in sitemaps revealed `user_nicename`, which is usually derived from login name.
+* Replace author archive links (e.g. author name link in byline) with the posts page. The URL can be changed in Settings > Reading.
+* Replace author name in feeds (`<dc:creator>` in RSS/RDF, `<author>` in Atom) with the site name, and remove author URL from Atom feed.
+* Remove `comment-author-{user_nicename}` class from registered user's comments.
+* Fix block editor showing "(No author)" for editors. Single user request in REST API now uses the same capabilities as the user list. Props [@ko31](https://github.com/ko31).
+* `hide_author_archive_rest_query_capability` filter is now also applied to single user request. In that case, `$args` is an empty array.
+* Bump requirements: WordPress 6.6 or later. Tested up to 7.1.
 
 ### 1.2.1
 
