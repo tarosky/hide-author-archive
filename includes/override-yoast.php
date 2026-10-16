@@ -15,6 +15,11 @@ add_filter( 'wpseo_meta_author', '__return_false', 100 );
 add_filter( 'wpseo_schema_needs_author', '__return_false', 100 );
 
 /**
+ * Exclude all authors from XML sitemap.
+ */
+add_filter( 'wpseo_sitemap_exclude_author', '__return_empty_array', 100 );
+
+/**
  * Avoid author name in Slack.
  */
 add_filter( 'wpseo_enhanced_slack_data', function ( $data ) {
@@ -32,24 +37,6 @@ add_filter( 'wpseo_enhanced_slack_data', function ( $data ) {
 add_filter( 'wpseo_opengraph_author_facebook', function ( $author ) {
 	return '';
 }, 100 );
-
-/**
- * Default author name.
- *
- * @return string
- */
-function hide_author_archive_default_author_name() {
-	return apply_filters( 'hide_author_archive_default_author_name', get_bloginfo( 'name' ) );
-}
-
-/**
- * Default author URL.
- *
- * @return string
- */
-function hide_author_archive_default_author_url() {
-	return apply_filters( 'hide_author_archive_default_author_url', home_url() );
-}
 
 /**
  * Override author in Artible schema.

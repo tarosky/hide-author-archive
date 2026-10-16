@@ -36,9 +36,14 @@ add_filter( 'hide_author_archive_rest_query_capability', function( $caps ) {
 } );
 </pre>
 
+4. Remove users sitemap (`/wp-sitemap-users-1.xml`) from core XML sitemaps. Author archive URLs reveal `user_nicename`, which is usually derived from login name.
+
 Besides that, this plugin tries to remove author information from meta tags and JSON-LD as possible as it can.
 
 - Override author section in oEmbed.
+- Replace author archive links (e.g. author name link in byline) with the posts page, because the link contains `user_nicename`. You can change the URL in Settings > Reading.
+- Remove `comment-author-{user_nicename}` class from registered user's comments.
+- Replace author name in feeds (`<dc:creator>` in RSS, `<author>` in Atom) with the site name. Author's URL is also removed from Atom feed. Display name is the same as login name by default, so feeds may reveal it.
 
 Some organization needs to hide author information of each article.
 
@@ -50,6 +55,7 @@ Some organization needs to hide author information of each article.
 2. Override author section in Article scheme in JSON-LD
 3. Hide author section in Slack sharing.
 4. Hide <code>article:author</code> in OGP.
+5. Exclude all authors from XML sitemap.
 
 ## Installation
 
@@ -62,6 +68,12 @@ Altenatively, you can install it manually like below:
 ## Frequently Asked Questions
 
 ### There is still author name exposed!
+
+This plugin is for sites that **do not intend** to show author information, but WordPress exposes it unintentionally.
+Its scope is machine-readable identifiers such as `user_nicename` (usually the same as the login name) in URLs, CSS classes, sitemaps, feeds and REST API, which site owners rarely notice.
+
+The author's **display name** shown by your theme (e.g. `the_author()` in a byline) is out of scope, because the theme and the site owner intentionally output it.
+If your theme shows author names you don't want, change the theme or set a proper display name for each user (by default, display name is the same as login name).
 
 Our fundamental goal is covering Core features.
 But feel free to let us know and request new features.
