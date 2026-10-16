@@ -39,24 +39,6 @@ add_filter( 'wpseo_opengraph_author_facebook', function ( $author ) {
 }, 100 );
 
 /**
- * Default author name.
- *
- * @return string
- */
-function hide_author_archive_default_author_name() {
-	return apply_filters( 'hide_author_archive_default_author_name', get_bloginfo( 'name' ) );
-}
-
-/**
- * Default author URL.
- *
- * @return string
- */
-function hide_author_archive_default_author_url() {
-	return apply_filters( 'hide_author_archive_default_author_url', home_url() );
-}
-
-/**
  * Override author in Artible schema.
  *
  * Author is required for the Article schema.
