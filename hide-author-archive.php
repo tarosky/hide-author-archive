@@ -33,6 +33,7 @@ function hide_author_archive_i18n() {
 add_action( 'plugins_loaded', 'hide_author_archive_i18n' );
 
 // Load includes.
+require __DIR__ . '/includes/functions-author.php';
 require __DIR__ . '/includes/functions-rewrite.php';
 require __DIR__ . '/includes/functions-rest.php';
 require __DIR__ . '/includes/functions-sitemap.php';

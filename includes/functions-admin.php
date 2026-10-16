@@ -26,6 +26,21 @@ function hide_author_archive_fields() {
 		);
 	}, 'reading', 'hide_author_archive' );
 	register_setting( 'reading', 'hide_author_archive_int_rest' );
+	// Author link URL.
+	add_settings_field( 'hide_author_archive_author_link', __( 'Author Link', 'hide-author-archive' ), function () {
+		printf(
+			'<input type="url" class="regular-text" name="%1$s" id="%1$s" value="%2$s" placeholder="%3$s" /><p class="description">%4$s</p>',
+			'hide_author_archive_author_link',
+			esc_attr( get_option( 'hide_author_archive_author_link', '' ) ),
+			esc_attr( (string) get_post_type_archive_link( 'post' ) ),
+			esc_html__( 'Links to author archive will be replaced with this URL. If empty, the posts page is used.', 'hide-author-archive' )
+		);
+	}, 'reading', 'hide_author_archive' );
+	register_setting( 'reading', 'hide_author_archive_author_link', [
+		'type'              => 'string',
+		'sanitize_callback' => 'esc_url_raw',
+		'default'           => '',
+	] );
 }
 add_action( 'admin_init', 'hide_author_archive_fields' );
 

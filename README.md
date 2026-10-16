@@ -37,6 +37,7 @@ add_filter( 'hide_author_archive_rest_query_capability', function( $caps ) {
 Besides that, this plugin tries to remove author information from meta tags and JSON-LD as possible as it can.
 
 - Override author section in oEmbed.
+- Replace author archive links (e.g. author name link in byline) with the posts page, because the link contains `user_nicename`. You can change the URL in Settings > Reading.
 - Remove `comment-author-{user_nicename}` class from registered user's comments.
 - Replace author name in feeds (`<dc:creator>` in RSS, `<author>` in Atom) with the site name. Author's URL is also removed from Atom feed. Display name is the same as login name by default, so feeds may reveal it.
 
