@@ -32,6 +32,8 @@ add_filter( 'hide_author_archive_rest_query_capability', function( $caps ) {
 } );
 </pre>
 
+4. Remove users sitemap (`/wp-sitemap-users-1.xml`) from core XML sitemaps. Author archive URLs reveal `user_nicename`, which is usually derived from login name.
+
 Besides that, this plugin tries to remove author information from meta tags and JSON-LD as possible as it can.
 
 - Override author section in oEmbed.
@@ -46,6 +48,7 @@ Some organization needs to hide author information of each article.
 2. Override author section in Article scheme in JSON-LD
 3. Hide author section in Slack sharing.
 4. Hide <code>article:author</code> in OGP.
+5. Exclude all authors from XML sitemap.
 
 ## Installation
 

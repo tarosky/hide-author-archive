@@ -15,6 +15,11 @@ add_filter( 'wpseo_meta_author', '__return_false', 100 );
 add_filter( 'wpseo_schema_needs_author', '__return_false', 100 );
 
 /**
+ * Exclude all authors from XML sitemap.
+ */
+add_filter( 'wpseo_sitemap_exclude_author', '__return_empty_array', 100 );
+
+/**
  * Avoid author name in Slack.
  */
 add_filter( 'wpseo_enhanced_slack_data', function ( $data ) {
