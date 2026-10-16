@@ -35,6 +35,7 @@ add_action( 'plugins_loaded', 'hide_author_archive_i18n' );
 // Load includes.
 require __DIR__ . '/includes/functions-rewrite.php';
 require __DIR__ . '/includes/functions-rest.php';
+require __DIR__ . '/includes/functions-sitemap.php';
 require __DIR__ . '/includes/functions-admin.php';
 require __DIR__ . '/includes/override-yoast.php';
 
